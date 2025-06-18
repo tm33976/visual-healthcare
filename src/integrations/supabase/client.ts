@@ -3,9 +3,8 @@
 import { createClient } from '@supabase/supabase-js';
 import type { Database } from './types';
 
-const SUPABASE_URL = "https://acgrnrnflsddeznnmypp.supabase.co";
-const SUPABASE_PUBLISHABLE_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImFjZ3Jucm5mbHNkZGV6bm5teXBwIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDk5OTIzMjAsImV4cCI6MjA2NTU2ODMyMH0.eiphkVpQaSIG_cBQLYVmYlMtFkRyPKsi-nl_jL2zoNA";
-
+const SUPABASE_URL = "YOUR_URL";
+const SUPABASE_PUBLISHABLE_KEY = "YOUR_KEY"
 // Configure auth storage and session correctly for React
 export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABLE_KEY, {
   auth: {
