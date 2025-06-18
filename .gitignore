@@ -8,7 +8,7 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Supabase folder
-supabase
+/supabase/
 node_modules
 dist
 dist-ssr
