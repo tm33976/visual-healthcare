@@ -23,7 +23,7 @@ const ActivityFeed = () => {
       </CardHeader>
       <CardContent className="p-6">
         <div className="mb-4">
-          <p className="text-sm text-gray-600">3 appointments on this week</p>
+          <p className="text-sm text-gray-600 dark:text-gray-400">3 appointments on this week</p>
         </div>
         
         {/* Simple Bar Chart */}
@@ -34,7 +34,7 @@ const ActivityFeed = () => {
                 className="w-full bg-blue-200 rounded-t"
                 style={{ height: `${item.value}%` }}
               ></div>
-              <span className="text-xs text-gray-500 mt-2">{item.day}</span>
+              <span className="text-xs text-gray-500 dark:text-gray-400 mt-2">{item.day}</span>
             </div>
           ))}
         </div>

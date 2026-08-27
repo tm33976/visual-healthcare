@@ -98,10 +98,10 @@ const HealthDiary = () => {
         />
       )}
       {loading ? (
-        <div className="text-gray-600">Loading...</div>
+        <div className="text-gray-600 dark:text-gray-400">Loading...</div>
       ) : (
         <>
-          {entries.length === 0 && <div className="mt-8 text-gray-400">No diary entries yet. Click "New" to add one!</div>}
+          {entries.length === 0 && <div className="mt-8 text-gray-400 dark:text-gray-500">No diary entries yet. Click "New" to add one!</div>}
           <div className="grid gap-6 mt-6">
             {entries.map(entry => (
               <Card key={entry.id}>
@@ -126,7 +126,7 @@ const HealthDiary = () => {
                     />
                   )}
                   <div className="whitespace-pre-wrap">{entry.content}</div>
-                  <div className="text-xs text-gray-400 mt-3">
+                  <div className="text-xs text-gray-400 dark:text-gray-500 mt-3">
                     Updated: {new Date(entry.updated_at).toLocaleString()}
                   </div>
                 </CardContent>

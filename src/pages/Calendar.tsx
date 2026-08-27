@@ -129,7 +129,7 @@ const Calendar = () => {
               {dayNames.map(day => (
                 <div
                   key={day}
-                  className="p-2 sm:p-3 text-center text-xs sm:text-sm font-medium text-gray-500 border-b"
+                  className="p-2 sm:p-3 text-center text-xs sm:text-sm font-medium text-gray-500 dark:text-gray-400 border-b"
                 >
                   {day}
                 </div>
@@ -149,16 +149,16 @@ const Calendar = () => {
                     className={`min-h-[80px] sm:min-h-[120px] p-1 sm:p-2 border rounded-lg cursor-pointer transition-colors ${
                       isValidDay
                         ? isTodayCell
-                          ? "bg-blue-50 border-blue-200 hover:bg-blue-100"
-                          : "bg-white border-gray-200 hover:bg-gray-50"
-                        : "bg-gray-50 border-gray-100"
+                          ? "bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800 hover:bg-blue-100 dark:hover:bg-blue-900"
+                          : "bg-white dark:bg-gray-900 border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800"
+                        : "bg-gray-50 dark:bg-gray-950 border-gray-100 dark:border-gray-800"
                     }`}
                     onClick={() => isValidDay && handleDateClick(day)}
                   >
                     {isValidDay && (
                       <>
                         <div className={`text-xs sm:text-sm font-medium mb-1 ${
-                          isTodayCell ? "text-blue-600" : "text-gray-900"
+                          isTodayCell ? "text-blue-600" : "text-gray-900 dark:text-gray-100"
                         }`}>
                           {day}
                         </div>
@@ -166,14 +166,14 @@ const Calendar = () => {
                           {dayAppointments.slice(0, 3).map((appointment, idx) => (
                             <div
                               key={idx}
-                              className="text-[10px] sm:text-xs p-1 bg-blue-100 text-blue-800 rounded truncate"
+                              className="text-[10px] sm:text-xs p-1 bg-blue-100 dark:bg-blue-900 text-blue-800 rounded truncate"
                               title={`${appointment.time} - ${appointment.doctor}`}
                             >
                               {appointment.time} {appointment.doctor}
                             </div>
                           ))}
                           {dayAppointments.length > 3 && (
-                            <div className="text-[10px] sm:text-xs text-gray-500">
+                            <div className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400">
                               +{dayAppointments.length - 3} more
                             </div>
                           )}
@@ -198,13 +198,13 @@ const Calendar = () => {
                   .map((appointment) => (
                     <div
                       key={appointment.id}
-                      className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 sm:p-3 bg-blue-50 border border-blue-200 rounded-lg gap-2"
+                      className="flex flex-col sm:flex-row items-start sm:items-center justify-between p-2 sm:p-3 bg-blue-50 dark:bg-blue-950 border border-blue-200 dark:border-blue-800 rounded-lg gap-2"
                     >
                       <div>
-                        <p className="font-medium text-gray-900">{appointment.doctor}</p>
-                        <p className="text-xs sm:text-sm text-gray-600">{appointment.specialty}</p>
+                        <p className="font-medium text-gray-900 dark:text-gray-100">{appointment.doctor}</p>
+                        <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">{appointment.specialty}</p>
                         {appointment.notes && (
-                          <p className="text-[10px] sm:text-xs text-gray-500 mt-1">{appointment.notes}</p>
+                          <p className="text-[10px] sm:text-xs text-gray-500 dark:text-gray-400 mt-1">{appointment.notes}</p>
                         )}
                       </div>
                       <div className="text-right min-w-[90px]">

@@ -114,7 +114,7 @@ const Tips = () => {
       icon: Eye,
       category: "Eye Emergency",
       color: "text-blue-600",
-      bgColor: "bg-blue-50",
+      bgColor: "bg-blue-50 dark:bg-blue-950",
       symptoms: ["Pain in eye", "Loss of vision", "Blood in eye", "Something stuck in eye"],
       immediateActions: [
         "Don't rub the eye",
@@ -147,7 +147,7 @@ const Tips = () => {
     <div className="p-6">
       <div className="mb-6">
         <h1 className="text-2xl font-bold mb-2">Medical Emergency Tips</h1>
-        <p className="text-gray-600">Important guidance for medical emergencies. Always call 102 or 112 for serious emergencies in India.</p>
+        <p className="text-gray-600 dark:text-gray-400">Important guidance for medical emergencies. Always call 102 or 112 for serious emergencies in India.</p>
       </div>
 
       {/* Emergency Numbers */}
@@ -164,7 +164,7 @@ const Tips = () => {
               <div key={index} className="text-center">
                 <div className="font-bold text-lg text-red-700">{contact.number}</div>
                 <div className="font-medium">{contact.service}</div>
-                <div className="text-sm text-gray-600">{contact.description}</div>
+                <div className="text-sm text-gray-600 dark:text-gray-400">{contact.description}</div>
               </div>
             ))}
           </div>
@@ -195,7 +195,7 @@ const Tips = () => {
               <CardTitle className="flex items-center">
                 <tip.icon className={`h-6 w-6 mr-2 ${tip.color}`} />
                 {tip.title}
-                <span className="ml-2 text-sm bg-white px-2 py-1 rounded-full text-gray-600">
+                <span className="ml-2 text-sm bg-white dark:bg-gray-900 px-2 py-1 rounded-full text-gray-600 dark:text-gray-400">
                   {tip.category}
                 </span>
               </CardTitle>

@@ -28,7 +28,7 @@ const CalendarView = () => {
         <div className="mb-6">
           <div className="grid grid-cols-7 gap-1 mb-2">
             {daysOfWeek.map(day => (
-              <div key={day} className="text-center text-sm font-medium text-gray-500 py-2">
+              <div key={day} className="text-center text-sm font-medium text-gray-500 dark:text-gray-400 py-2">
                 {day}
               </div>
             ))}
@@ -41,11 +41,11 @@ const CalendarView = () => {
                 className={`aspect-square flex flex-col items-center justify-start p-1 text-sm border rounded ${
                   day.isCurrentMonth
                     ? day.hasAppointments
-                      ? 'bg-blue-50 border-blue-200'
+                      ? 'bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800'
                       : day.isToday
                       ? 'bg-blue-600 text-white border-blue-600'
-                      : 'border-gray-200 hover:bg-gray-50'
-                    : 'text-gray-300 border-gray-100'
+                      : 'border-gray-200 dark:border-gray-800 hover:bg-gray-50 dark:hover:bg-gray-800'
+                    : 'text-gray-300 dark:text-gray-600 border-gray-100 dark:border-gray-800'
                 }`}
               >
                 <span className="font-medium">{day.date}</span>
@@ -54,7 +54,7 @@ const CalendarView = () => {
                     {day.appointments.map((time, timeIndex) => (
                       <span
                         key={timeIndex}
-                        className="text-xs bg-blue-100 text-blue-700 px-1 rounded"
+                        className="text-xs bg-blue-100 dark:bg-blue-900 text-blue-700 px-1 rounded"
                       >
                         {time}
                       </span>
@@ -69,13 +69,13 @@ const CalendarView = () => {
         {/* Appointment Details */}
         <div className="space-y-4">
           {appointmentDetails.map((appointment, index) => (
-            <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+            <div key={index} className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-950 rounded-lg">
               <div className={`p-2 rounded-full ${appointment.color}`}>
                 <appointment.icon className="h-5 w-5 text-white" />
               </div>
               <div className="flex-1">
-                <p className="font-medium text-gray-900">{appointment.title}</p>
-                <div className="flex items-center text-sm text-gray-500">
+                <p className="font-medium text-gray-900 dark:text-gray-100">{appointment.title}</p>
+                <div className="flex items-center text-sm text-gray-500 dark:text-gray-400">
                   <Clock className="mr-1 h-3 w-3" />
                   {appointment.time}
                 </div>

@@ -60,9 +60,9 @@ const History = () => {
       {appointments.length === 0 ? (
         <Card className="animate-fade-in">
           <CardContent className="p-8 text-center">
-            <Heart className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-pulse" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No medical history yet</h3>
-            <p className="text-gray-500">Your appointment history will appear here once you book appointments</p>
+            <Heart className="h-12 w-12 text-gray-400 dark:text-gray-500 mx-auto mb-4 animate-pulse" />
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No medical history yet</h3>
+            <p className="text-gray-500 dark:text-gray-400">Your appointment history will appear here once you book appointments</p>
           </CardContent>
         </Card>
       ) : (
@@ -74,15 +74,15 @@ const History = () => {
                   <Calendar className="h-5 w-5 text-blue-500 animate-scale-in" />
                   <div>
                     <p className="font-medium">{appointment.specialty}</p>
-                    <p className="text-sm text-gray-500">{appointment.doctor}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{appointment.doctor}</p>
                     {appointment.notes && (
-                      <p className="text-sm text-gray-600 mt-1">Note: {appointment.notes}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Note: {appointment.notes}</p>
                     )}
                   </div>
                 </div>
                 <div className="text-right min-w-[110px]">
                   <p className="text-sm font-medium">{formatDate(appointment.date)}</p>
-                  <p className="text-sm text-gray-500">{appointment.time}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{appointment.time}</p>
                   <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium mt-1 ${
                     appointment.status === "Confirmed" 
                       ? "bg-green-100 text-green-800" 

@@ -91,11 +91,11 @@ const Statistics = () => {
             <CardContent className="p-6">
               <div className="flex items-center justify-between">
                 <div>
-                  <p className="text-sm text-gray-500">{stat.title}</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{stat.title}</p>
                   <p className="text-2xl font-bold">{stat.value}</p>
                   <p className={`text-sm ${
                     stat.change.startsWith('+') ? 'text-green-600' : 
-                    stat.change.startsWith('-') ? 'text-red-600' : 'text-gray-600'
+                    stat.change.startsWith('-') ? 'text-red-600' : 'text-gray-600 dark:text-gray-400'
                   }`}>
                     {stat.change}
                   </p>
@@ -113,7 +113,7 @@ const Statistics = () => {
         </CardHeader>
         <CardContent>
           {recentVisits.length === 0 ? (
-            <div className="text-center py-4 text-gray-500">
+            <div className="text-center py-4 text-gray-500 dark:text-gray-400">
               No appointments found. Book your first appointment to see statistics.
             </div>
           ) : (
@@ -123,11 +123,11 @@ const Statistics = () => {
                   <div>
                     <span className="font-medium">{appointment.doctor} - {appointment.specialty}</span>
                     {appointment.notes && (
-                      <p className="text-sm text-gray-600">Note: {appointment.notes}</p>
+                      <p className="text-sm text-gray-600 dark:text-gray-400">Note: {appointment.notes}</p>
                     )}
                   </div>
                   <div className="text-right">
-                    <span className="text-gray-500">{formatDate(appointment.date)}</span>
+                    <span className="text-gray-500 dark:text-gray-400">{formatDate(appointment.date)}</span>
                     <div className="mt-1">
                       <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                         appointment.status === "Confirmed" 

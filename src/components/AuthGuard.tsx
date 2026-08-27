@@ -77,7 +77,7 @@ const AuthGuard = ({ children }: { children: React.ReactNode }) => {
 
   if (loading || !profileChecked) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
         <Loader2 className="animate-spin h-6 w-6 text-blue-600" />
       </div>
     );

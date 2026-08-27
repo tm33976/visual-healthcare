@@ -11,7 +11,7 @@ const Layout = ({ children }: LayoutProps) => {
   const location = useLocation();
 
   return (
-    <div className="flex flex-col min-h-screen w-full bg-gray-50">
+    <div className="flex flex-col min-h-screen w-full bg-gray-50 dark:bg-gray-950">
       <Header />
       <div className="flex-1 flex flex-col lg:flex-row h-full min-h-[0]">
         {/* Sidebar (stretches to full viewport height) */}

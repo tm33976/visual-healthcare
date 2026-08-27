@@ -111,7 +111,7 @@ const Support = () => {
             <CardContent className="p-6 text-center">
               <option.icon className="h-12 w-12 text-blue-500 mx-auto mb-4" />
               <h3 className="font-medium mb-2">{option.title}</h3>
-              <p className="text-sm text-gray-500 mb-4">{option.description}</p>
+              <p className="text-sm text-gray-500 dark:text-gray-400 mb-4">{option.description}</p>
               <Button variant="outline" className="w-full" onClick={option.handler}>
                 {option.action}
               </Button>
@@ -132,7 +132,7 @@ const Support = () => {
             {faqs.map((faq, index) => (
               <div key={index} className="border-b pb-4 last:border-b-0">
                 <h4 className="font-medium mb-2">{faq.question}</h4>
-                <p className="text-sm text-gray-600">{faq.answer}</p>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{faq.answer}</p>
               </div>
             ))}
           </div>
@@ -142,7 +142,7 @@ const Support = () => {
       {/* Live Chat Modal */}
       {showChat && (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-          <div className="bg-white rounded-lg w-full max-w-md h-96 flex flex-col">
+          <div className="bg-white dark:bg-gray-900 rounded-lg w-full max-w-md h-96 flex flex-col">
             <div className="flex items-center justify-between p-4 border-b">
               <h3 className="font-semibold">Live Support Chat</h3>
               <Button variant="ghost" size="sm" onClick={() => setShowChat(false)}>
@@ -160,7 +160,7 @@ const Support = () => {
                     className={`max-w-xs px-3 py-2 rounded-lg text-sm ${
                       message.sender === 'user'
                         ? 'bg-blue-500 text-white'
-                        : 'bg-gray-200 text-gray-800'
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200'
                     }`}
                   >
                     {message.text}

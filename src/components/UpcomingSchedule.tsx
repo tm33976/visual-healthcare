@@ -17,7 +17,7 @@ const UpcomingSchedule = () => {
         <div className="space-y-6">
           {upcomingScheduleData.map((dayData, index) => (
             <div key={index}>
-              <h4 className="font-medium text-gray-700 mb-3">{dayData.day}</h4>
+              <h4 className="font-medium text-gray-700 dark:text-gray-300 mb-3">{dayData.day}</h4>
               <div className="space-y-3">
                 {dayData.appointments.map((appointment, appointmentIndex) => (
                   <SimpleAppointmentCard

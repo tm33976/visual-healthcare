@@ -121,9 +121,9 @@ export default function DiaryEntryForm({
 
   return (
     <div className="bg-black/50 fixed z-[90] inset-0 flex items-center justify-center">
-      <div className="bg-white w-full max-w-md p-6 rounded-lg relative shadow-lg">
+      <div className="bg-white dark:bg-gray-900 w-full max-w-md p-6 rounded-lg relative shadow-lg">
         <button
-          className="absolute top-2 right-2 p-1 rounded hover:bg-gray-100 text-gray-500"
+          className="absolute top-2 right-2 p-1 rounded hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-500 dark:text-gray-400"
           onClick={onClose}
           aria-label="Close"
         >

@@ -72,9 +72,9 @@ const Appointments = () => {
         {upcomingAppointments.length === 0 ? (
           <Card className="animate-fade-in">
             <CardContent className="p-8 text-center">
-              <Heart className="h-12 w-12 text-gray-400 mx-auto mb-4 animate-pulse" />
-              <h3 className="text-lg font-medium text-gray-900 mb-2">No upcoming appointments</h3>
-              <p className="text-gray-500 mb-4">You have no appointments scheduled for today or future dates.</p>
+              <Heart className="h-12 w-12 text-gray-400 dark:text-gray-500 mx-auto mb-4 animate-pulse" />
+              <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No upcoming appointments</h3>
+              <p className="text-gray-500 dark:text-gray-400 mb-4">You have no appointments scheduled for today or future dates.</p>
             </CardContent>
           </Card>
         ) : (
@@ -86,18 +86,18 @@ const Appointments = () => {
                     <Heart className="h-8 w-8 text-blue-500 animate-pulse" />
                     <div>
                       <p className="font-medium text-lg">{appointment.doctor}</p>
-                      <p className="text-gray-500">{appointment.specialty}</p>
+                      <p className="text-gray-500 dark:text-gray-400">{appointment.specialty}</p>
                       {appointment.notes && (
-                        <p className="text-sm text-gray-600 mt-1">Note: {appointment.notes}</p>
+                        <p className="text-sm text-gray-600 dark:text-gray-400 mt-1">Note: {appointment.notes}</p>
                       )}
                     </div>
                   </div>
                   <div className="text-right min-w-[110px]">
-                    <div className="flex items-center text-sm text-gray-500 mb-1">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-1">
                       <Calendar className="h-4 w-4 mr-1" />
                       {formatDate(appointment.date)}
                     </div>
-                    <div className="flex items-center text-sm text-gray-500 mb-1">
+                    <div className="flex items-center text-sm text-gray-500 dark:text-gray-400 mb-1">
                       <Clock className="h-4 w-4 mr-1" />
                       {appointment.time}
                     </div>

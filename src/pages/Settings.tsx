@@ -212,7 +212,7 @@ const Settings = () => {
           <CardContent className="space-y-4">
             <div className="flex items-center space-x-4 mb-4">
               <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-gray-200 overflow-hidden">
+                <div className="w-20 h-20 rounded-full bg-gray-200 dark:bg-gray-700 overflow-hidden">
                   {userProfile.profileImage ? (
                     <img 
                       src={userProfile.profileImage} 
@@ -221,7 +221,7 @@ const Settings = () => {
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center">
-                      <User className="h-8 w-8 text-gray-400" />
+                      <User className="h-8 w-8 text-gray-400 dark:text-gray-500" />
                     </div>
                   )}
                 </div>
@@ -238,7 +238,7 @@ const Settings = () => {
               </div>
               <div>
                 <p className="font-medium">Profile Picture</p>
-                <p className="text-sm text-gray-500">Click the camera icon to upload</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Click the camera icon to upload</p>
               </div>
             </div>
             
@@ -277,7 +277,7 @@ const Settings = () => {
               />
             </div>
             {!isGuest && <Button onClick={handleSaveProfile}>Save Changes</Button>}
-            {isGuest && <div className="mt-2 text-xs text-gray-500">Profile is read only in Guest Mode.</div>}
+            {isGuest && <div className="mt-2 text-xs text-gray-500 dark:text-gray-400">Profile is read only in Guest Mode.</div>}
           </CardContent>
         </Card>
 
@@ -292,7 +292,7 @@ const Settings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-medium">Appointment Reminders</p>
-                <p className="text-sm text-gray-500">Get notified about upcoming appointments</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Get notified about upcoming appointments</p>
               </div>
               <Switch 
                 checked={notifications.appointmentReminders}
@@ -302,7 +302,7 @@ const Settings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-medium">Test Results</p>
-                <p className="text-sm text-gray-500">Receive notifications when test results are ready</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Receive notifications when test results are ready</p>
               </div>
               <Switch 
                 checked={notifications.testResults}
@@ -312,7 +312,7 @@ const Settings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-medium">Health Tips</p>
-                <p className="text-sm text-gray-500">Weekly health and wellness tips</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Weekly health and wellness tips</p>
               </div>
               <Switch 
                 checked={notifications.healthTips}
@@ -327,7 +327,7 @@ const Settings = () => {
                     <Volume2 className="h-4 w-4 mr-2" />
                     Notification Ringtone
                   </p>
-                  <p className="text-sm text-gray-500">Choose your preferred notification sound</p>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">Choose your preferred notification sound</p>
                 </div>
                 <div className="flex items-center space-x-2">
                   <Select 
@@ -369,7 +369,7 @@ const Settings = () => {
             <div className="flex items-center justify-between">
               <div>
                 <p className="font-medium">Two-Factor Authentication</p>
-                <p className="text-sm text-gray-500">Add an extra layer of security</p>
+                <p className="text-sm text-gray-500 dark:text-gray-400">Add an extra layer of security</p>
               </div>
               <Switch 
                 checked={security.twoFactorAuth}
@@ -381,8 +381,8 @@ const Settings = () => {
               <ChangePasswordDialog />
             </div>
             {isGuest && (
-              <div className="absolute inset-0 bg-white/60 flex items-center justify-center rounded-lg z-10">
-                <span className="text-sm text-gray-600">Privacy & Security features are unavailable in Guest Mode.</span>
+              <div className="absolute inset-0 bg-white dark:bg-gray-900/60 flex items-center justify-center rounded-lg z-10">
+                <span className="text-sm text-gray-600 dark:text-gray-400">Privacy & Security features are unavailable in Guest Mode.</span>
               </div>
             )}
           </CardContent>

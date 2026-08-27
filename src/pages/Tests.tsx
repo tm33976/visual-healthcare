@@ -155,7 +155,7 @@ const Tests = () => {
         <CardContent className="p-4">
           <div className="flex flex-col md:flex-row gap-4">
             <div className="flex-1 relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
               <Input
                 placeholder="Search tests or doctors..."
                 value={searchTerm}
@@ -204,8 +204,8 @@ const Tests = () => {
                       <p className="font-medium">{test.name}</p>
                       {getTrendingIcon(test.trending)}
                     </div>
-                    <p className="text-sm text-gray-500">Ordered by {test.doctor}</p>
-                    <p className="text-sm text-gray-500">{test.date}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">Ordered by {test.doctor}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400">{test.date}</p>
                     <Badge variant="outline" className="text-xs mt-1">
                       {test.category}
                     </Badge>
@@ -261,9 +261,9 @@ const Tests = () => {
       {filteredTests.length === 0 && (
         <Card>
           <CardContent className="p-8 text-center">
-            <FileText className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-            <h3 className="text-lg font-medium text-gray-900 mb-2">No tests found</h3>
-            <p className="text-gray-500">Try adjusting your search or filter criteria</p>
+            <FileText className="h-12 w-12 text-gray-400 dark:text-gray-500 mx-auto mb-4" />
+            <h3 className="text-lg font-medium text-gray-900 dark:text-gray-100 mb-2">No tests found</h3>
+            <p className="text-gray-500 dark:text-gray-400">Try adjusting your search or filter criteria</p>
           </CardContent>
         </Card>
       )}

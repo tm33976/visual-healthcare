@@ -123,8 +123,8 @@ const Auth = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-50">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-[325px] space-y-6">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+      <div className="bg-white dark:bg-gray-900 p-8 rounded-lg shadow-lg w-[325px] space-y-6">
         <h2 className="text-2xl font-bold text-blue-600 mb-2 text-center">
           {authMode === "login" ? "Login" : "Sign Up"}
         </h2>
@@ -195,7 +195,7 @@ const Auth = () => {
           )}
         </form>
         <div className="flex flex-col items-center gap-1">
-          <span className="text-sm text-gray-500">
+          <span className="text-sm text-gray-500 dark:text-gray-400">
             {authMode === "login"
               ? "Don't have an account?"
               : "Already have an account?"}

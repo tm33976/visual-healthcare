@@ -170,7 +170,7 @@ const Chat = () => {
   return (
     <div className="p-6">
       <h1 className="text-2xl font-bold mb-1">Messages</h1>
-      <p className="text-sm text-gray-500 mb-6">
+      <p className="text-sm text-gray-500 dark:text-gray-400 mb-6">
         Demo inbox — replies are automated and stored on this device.
       </p>
 
@@ -187,8 +187,8 @@ const Chat = () => {
                     key={conv.doctor}
                     type="button"
                     onClick={() => openConversation(index)}
-                    className={`w-full text-left p-3 border rounded-lg hover:bg-gray-50 ${
-                      selectedConversation === index ? "bg-blue-50 border-blue-200" : ""
+                    className={`w-full text-left p-3 border rounded-lg hover:bg-gray-50 dark:hover:bg-gray-800 ${
+                      selectedConversation === index ? "bg-blue-50 dark:bg-blue-950 border-blue-200 dark:border-blue-800" : ""
                     }`}
                   >
                     <div className="flex items-center justify-between mb-1">
@@ -199,8 +199,8 @@ const Chat = () => {
                         </span>
                       )}
                     </div>
-                    <p className="text-sm text-gray-500 truncate">{conv.lastMessage}</p>
-                    <p className="text-xs text-gray-400 mt-1">{conv.time}</p>
+                    <p className="text-sm text-gray-500 dark:text-gray-400 truncate">{conv.lastMessage}</p>
+                    <p className="text-xs text-gray-400 dark:text-gray-500 mt-1">{conv.time}</p>
                   </button>
                 ))}
               </div>
@@ -222,11 +222,11 @@ const Chat = () => {
                   <div
                     key={message.id}
                     className={`p-3 rounded-lg max-w-xs ${
-                      message.isDoctor ? "bg-gray-100" : "bg-blue-100 ml-auto"
+                      message.isDoctor ? "bg-gray-100 dark:bg-gray-800" : "bg-blue-100 dark:bg-blue-900 ml-auto"
                     }`}
                   >
                     <p className="text-sm">{message.text}</p>
-                    <p className="text-xs text-gray-500 mt-1">
+                    <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
                       {message.sender} - {message.time}
                     </p>
                   </div>
