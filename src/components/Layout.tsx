@@ -1,3 +1,4 @@
+import { useLayoutEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import Header from "@/components/Header";
 import Sidebar from "@/components/Sidebar";
@@ -8,7 +9,14 @@ interface LayoutProps {
 }
 
 const Layout = ({ children }: LayoutProps) => {
-  const location = useLocation();
+  const { pathname } = useLocation();
+
+  // React Router keeps the old scroll position, so moving from a long page to
+  // a short one left you part-way down it and the browser clamped the scroll,
+  // which read as the whole screen lurching. Reset before paint.
+  useLayoutEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   return (
     <div className="flex flex-col min-h-screen w-full bg-gray-50 dark:bg-gray-950">
@@ -16,12 +24,7 @@ const Layout = ({ children }: LayoutProps) => {
       <div className="flex-1 flex flex-col lg:flex-row h-full min-h-[0]">
         {/* Sidebar (stretches to full viewport height) */}
         <Sidebar />
-        {/* Keying on the path replays the fade on navigation; no timers, so the
-            page never blanks out between routes. */}
-        <main
-          key={location.pathname}
-          className="flex-1 overflow-auto px-2 py-4 sm:px-4 md:px-6 animate-in fade-in duration-300"
-        >
+        <main className="flex-1 overflow-auto px-2 py-4 sm:px-4 md:px-6">
           {children}
         </main>
       </div>
