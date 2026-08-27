@@ -1,23 +1,18 @@
 
-import { useState } from "react";
-import { Menu } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { navigationItems } from "@/data/navigationData";
 
-const Sidebar = () => {
+interface SidebarProps {
+  /** Drawer state on small screens; the sidebar is always visible from lg up. */
+  open: boolean;
+  onClose: () => void;
+}
+
+const Sidebar = ({ open, onClose }: SidebarProps) => {
   const location = useLocation();
-  const [open, setOpen] = useState(false);
 
   return (
     <>
-      {/* Mobile Hamburger Button */}
-      <button
-        onClick={() => setOpen(!open)}
-        className="lg:hidden fixed top-4 left-4 z-40 bg-white dark:bg-gray-900 shadow-md rounded-full p-2 border border-gray-200 dark:border-gray-800 animate-scale-in"
-        aria-label="Open menu"
-      >
-        <Menu className="h-6 w-6" />
-      </button>
       <aside
         className={`fixed top-0 left-0 z-30 h-screen w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-transform duration-200 ease-in-out
           ${open ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 lg:static lg:block animate-slide-in-right`}
@@ -39,7 +34,7 @@ const Sidebar = () => {
                       ? "bg-blue-50 dark:bg-blue-950 text-blue-700 border-r-2 border-blue-700"
                       : "text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-800 hover:text-gray-900"
                   } animate-fade-in`}
-                  onClick={() => setOpen(false)} // close on mobile menu item click
+                  onClick={onClose} // close the drawer after navigating on mobile
                 >
                   <IconComponent className="mr-3 h-5 w-5 transition-transform duration-200 group-hover:scale-125" />
                   {item.name}
@@ -53,7 +48,7 @@ const Sidebar = () => {
       {open && (
         <div
           className="fixed inset-0 bg-black bg-opacity-20 z-20 lg:hidden animate-fade-in"
-          onClick={() => setOpen(false)}
+          onClick={onClose}
         />
       )}
     </>

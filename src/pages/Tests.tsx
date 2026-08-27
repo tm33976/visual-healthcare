@@ -196,7 +196,7 @@ const Tests = () => {
         {filteredTests.map((test) => (
           <Card key={test.id} className="hover:shadow-md transition-shadow">
             <CardContent className="p-4">
-              <div className="flex items-center justify-between">
+              <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                 <div className="flex items-center space-x-4">
                   <FileText className="h-6 w-6 text-blue-500" />
                   <div>
@@ -211,7 +211,7 @@ const Tests = () => {
                     </Badge>
                   </div>
                 </div>
-                <div className="text-right flex items-center space-x-3">
+                <div className="flex items-center space-x-3 sm:text-right">
                   <div>
                     <Badge variant={test.status === "Completed" ? "default" : "secondary"}>
                       {test.status}

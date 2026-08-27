@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Search, Bell } from "lucide-react";
+import { Menu, Search, Bell } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
@@ -35,7 +35,11 @@ interface Appointment {
 
 const GUEST_KEY = "open_as_guest";
 
-const Header = () => {
+interface HeaderProps {
+  onMenuClick?: () => void;
+}
+
+const Header = ({ onMenuClick }: HeaderProps) => {
   const [userProfile, setUserProfile] = useState<UserProfile>(() => {
     // Load from localStorage, fallback to default
     const fromLocal = localStorage.getItem("userProfile");
@@ -135,7 +139,17 @@ const Header = () => {
     <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-2 py-3 sm:px-4 md:px-6">
       <div className="flex flex-col gap-y-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-y-2 sm:flex-row sm:items-center sm:space-x-6">
-          <h1 className="text-2xl font-bold text-blue-600 flex-shrink-0">Healthcare.</h1>
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={onMenuClick}
+              aria-label="Open menu"
+              className="lg:hidden -ml-1 p-2 rounded-lg text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800"
+            >
+              <Menu className="h-6 w-6" />
+            </button>
+            <h1 className="text-2xl font-bold text-blue-600 flex-shrink-0">Healthcare.</h1>
+          </div>
           
           <div className="relative w-full max-w-xs sm:max-w-md">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4" />
