@@ -50,9 +50,13 @@ const FindCare = () => {
 
     try {
       const place = await lookupPin(value);
+      const found = await fetchFacilities(place);
       setLocation(place);
-      setFacilities(await fetchFacilities(place));
+      setFacilities(found);
     } catch (e) {
+      // Leave location unset so the results summary does not claim "0 found"
+      // when the lookup actually failed.
+      setLocation(null);
       setError(e instanceof Error ? e.message : "Something went wrong. Try again.");
     } finally {
       setLoading(false);

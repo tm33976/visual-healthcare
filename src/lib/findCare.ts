@@ -29,6 +29,15 @@ export interface PinLocation {
   label: string;
 }
 
+// The main instance rate-limits by IP and its error pages carry no CORS
+// headers, so a throttled request surfaces in the browser as a CORS failure.
+// Fall through to the mirrors before giving up.
+const OVERPASS_ENDPOINTS = [
+  "https://overpass-api.de/api/interpreter",
+  "https://overpass.kumi.systems/api/interpreter",
+  "https://overpass.private.coffee/api/interpreter",
+];
+
 const CACHE_PREFIX = "findcare:";
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const SEARCH_RADIUS_M = 6000;
@@ -110,13 +119,28 @@ export async function fetchFacilities(location: PinLocation): Promise<Facility[]
   const query =
     `[out:json][timeout:25];(node${filter}${around};way${filter}${around};);out center tags 600;`;
 
-  const res = await fetch("https://overpass-api.de/api/interpreter", {
-    method: "POST",
-    body: query,
-  });
-  if (!res.ok) throw new Error("OpenStreetMap is not responding right now. Try again shortly.");
+  let raw: unknown = null;
+  let lastError: unknown = null;
 
-  const data = (await res.json()) as {
+  for (const endpoint of OVERPASS_ENDPOINTS) {
+    try {
+      const res = await fetch(endpoint, { method: "POST", body: query });
+      if (!res.ok) throw new Error(`${endpoint} returned ${res.status}`);
+      raw = await res.json();
+      break;
+    } catch (e) {
+      lastError = e;
+    }
+  }
+
+  if (!raw) {
+    console.warn("Overpass lookup failed", lastError);
+    throw new Error(
+      "The map service is busy right now. Wait a few seconds and search again."
+    );
+  }
+
+  const data = raw as {
     elements: Array<{
       type: string;
       id: number;
