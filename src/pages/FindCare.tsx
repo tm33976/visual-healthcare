@@ -185,7 +185,7 @@ const FindCare = () => {
                 )}
                 <Button asChild size="sm" variant="outline">
                   <a
-                    href={`https://www.openstreetmap.org/?mlat=${f.lat}&mlon=${f.lon}#map=17/${f.lat}/${f.lon}`}
+                    href={`https://www.google.com/maps/dir/?api=1&destination=${f.lat},${f.lon}&travelmode=driving`}
                     target="_blank"
                     rel="noreferrer"
                   >
