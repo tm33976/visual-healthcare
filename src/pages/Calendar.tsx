@@ -3,7 +3,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ChevronLeft, ChevronRight, Plus } from "lucide-react";
-import Layout from "@/components/Layout";
 import AppointmentDialog from "@/components/AppointmentDialog";
 import { fetchAppointments } from "@/utils/appointments";
 
@@ -96,7 +95,7 @@ const Calendar = () => {
   const totalCells = Math.ceil((daysInMonth + firstDay) / 7) * 7;
 
   return (
-    <Layout>
+    <>
       <div className="p-2 sm:p-4 md:p-6">
         <div className="flex flex-col sm:flex-row justify-between items-center mb-6 gap-y-2">
           <div className="flex items-center space-x-4 w-full sm:w-auto">
@@ -226,7 +225,8 @@ const Calendar = () => {
         onOpenChange={handleDialogClose}
         preselectedDate={selectedDate}
       />
-    </Layout>
+
+    </>
   );
 };
 

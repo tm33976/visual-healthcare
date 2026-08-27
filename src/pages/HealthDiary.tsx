@@ -6,7 +6,6 @@ import { Plus, Edit2, Trash2 } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import DiaryEntryForm from "@/components/DiaryEntryForm";
-import Layout from "@/components/Layout";
 
 interface DiaryEntry {
   id: string;
@@ -84,61 +83,60 @@ const HealthDiary = () => {
   };
 
   return (
-    <Layout>
-      <div className="p-6 max-w-3xl mx-auto">
-        <h1 className="text-2xl font-bold mb-4 flex items-center gap-2">
-          Health Diary
-          <Button onClick={handleCreate} size="sm" className="ml-2" aria-label="Add Diary Entry">
-            <Plus className="w-4 h-4" />
-            New
-          </Button>
-        </h1>
-        {showForm && (
-          <DiaryEntryForm
-            entry={editingEntry}
-            onClose={handleFormClose}
-          />
-        )}
-        {loading ? (
-          <div className="text-gray-600">Loading...</div>
-        ) : (
-          <>
-            {entries.length === 0 && <div className="mt-8 text-gray-400">No diary entries yet. Click "New" to add one!</div>}
-            <div className="grid gap-6 mt-6">
-              {entries.map(entry => (
-                <Card key={entry.id}>
-                  <CardHeader className="flex flex-row items-center justify-between">
-                    <CardTitle>{entry.title}</CardTitle>
-                    <div className="flex gap-2">
-                      <Button size="icon" variant="outline" onClick={() => handleEdit(entry)} aria-label="Edit">
-                        <Edit2 className="w-4 h-4" />
-                      </Button>
-                      <Button size="icon" variant="outline" onClick={() => handleDelete(entry)} aria-label="Delete">
-                        <Trash2 className="w-4 h-4" />
-                      </Button>
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    {entry.image_url && (
-                      <img 
-                        src={entry.image_url} 
-                        alt="Diary visual" 
-                        className="mb-3 max-h-52 rounded shadow"
-                        onError={e => { (e.target as HTMLImageElement).style.display = "none"; }}
-                      />
-                    )}
-                    <div className="whitespace-pre-wrap">{entry.content}</div>
-                    <div className="text-xs text-gray-400 mt-3">
-                      Updated: {new Date(entry.updated_at).toLocaleString()}
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </>
-        )}
-      </div>
-    </Layout>
+    <div className="p-6 max-w-3xl mx-auto">
+      <h1 className="text-2xl font-bold mb-4 flex items-center gap-2">
+        Health Diary
+        <Button onClick={handleCreate} size="sm" className="ml-2" aria-label="Add Diary Entry">
+          <Plus className="w-4 h-4" />
+          New
+        </Button>
+      </h1>
+      {showForm && (
+        <DiaryEntryForm
+          entry={editingEntry}
+          onClose={handleFormClose}
+        />
+      )}
+      {loading ? (
+        <div className="text-gray-600">Loading...</div>
+      ) : (
+        <>
+          {entries.length === 0 && <div className="mt-8 text-gray-400">No diary entries yet. Click "New" to add one!</div>}
+          <div className="grid gap-6 mt-6">
+            {entries.map(entry => (
+              <Card key={entry.id}>
+                <CardHeader className="flex flex-row items-center justify-between">
+                  <CardTitle>{entry.title}</CardTitle>
+                  <div className="flex gap-2">
+                    <Button size="icon" variant="outline" onClick={() => handleEdit(entry)} aria-label="Edit">
+                      <Edit2 className="w-4 h-4" />
+                    </Button>
+                    <Button size="icon" variant="outline" onClick={() => handleDelete(entry)} aria-label="Delete">
+                      <Trash2 className="w-4 h-4" />
+                    </Button>
+                  </div>
+                </CardHeader>
+                <CardContent>
+                  {entry.image_url && (
+                    <img 
+                      src={entry.image_url} 
+                      alt="Diary visual" 
+                      className="mb-3 max-h-52 rounded shadow"
+                      onError={e => { (e.target as HTMLImageElement).style.display = "none"; }}
+                    />
+                  )}
+                  <div className="whitespace-pre-wrap">{entry.content}</div>
+                  <div className="text-xs text-gray-400 mt-3">
+                    Updated: {new Date(entry.updated_at).toLocaleString()}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </>
+      )}
+    </div>
+
   );
 };
 

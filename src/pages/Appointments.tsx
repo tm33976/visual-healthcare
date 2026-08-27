@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Heart, Calendar, Clock } from "lucide-react";
-import Layout from "@/components/Layout";
 import AppointmentDialog from "@/components/AppointmentDialog";
 import { fetchAppointments } from "@/utils/appointments";
 
@@ -64,7 +63,7 @@ const Appointments = () => {
   };
 
   return (
-    <Layout>
+    <>
       <div className="p-2 sm:p-4 md:p-6 max-w-2xl mx-auto">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-y-2">
           <h1 className="text-2xl font-bold animate-scale-in">Upcoming Appointments</h1>
@@ -120,7 +119,8 @@ const Appointments = () => {
         open={isAppointmentDialogOpen} 
         onOpenChange={handleDialogClose} 
       />
-    </Layout>
+
+    </>
   );
 };
 

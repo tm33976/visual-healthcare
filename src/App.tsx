@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import Index from "./pages/Index";
 import History from "./pages/History";
 import Calendar from "./pages/Calendar";
@@ -12,9 +12,11 @@ import Tests from "./pages/Tests";
 import Tips from "./pages/Tips";
 import Support from "./pages/Support";
 import Settings from "./pages/Settings";
+import Chat from "./pages/Chat";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import AuthGuard from "@/components/AuthGuard";
+import Layout from "@/components/Layout";
 import HealthDiary from "./pages/HealthDiary";
 
 const queryClient = new QueryClient();
@@ -30,17 +32,20 @@ const App = () => (
           <Route path="*" element={
             <AuthGuard>
               <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/history" element={<History />} />
-                <Route path="/calendar" element={<Calendar />} />
-                <Route path="/appointments" element={<Appointments />} />
-                <Route path="/statistics" element={<Statistics />} />
-                <Route path="/tests" element={<Tests />} />
-                <Route path="/tips" element={<Tips />} />
-                <Route path="/support" element={<Support />} />
-                <Route path="/settings" element={<Settings />} />
-                <Route path="/diary" element={<HealthDiary />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+                {/* Header and sidebar live here, so pages never render their own */}
+                <Route element={<Layout><Outlet /></Layout>}>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/history" element={<History />} />
+                  <Route path="/calendar" element={<Calendar />} />
+                  <Route path="/appointments" element={<Appointments />} />
+                  <Route path="/statistics" element={<Statistics />} />
+                  <Route path="/tests" element={<Tests />} />
+                  <Route path="/tips" element={<Tips />} />
+                  <Route path="/diary" element={<HealthDiary />} />
+                  <Route path="/chat" element={<Chat />} />
+                  <Route path="/support" element={<Support />} />
+                  <Route path="/settings" element={<Settings />} />
+                </Route>
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </AuthGuard>

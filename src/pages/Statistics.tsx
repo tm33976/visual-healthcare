@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { BarChart3, TrendingUp, Heart, Activity } from "lucide-react";
-import Layout from "@/components/Layout";
 import { fetchAppointments } from "@/utils/appointments";
 
 interface Appointment {
@@ -84,70 +83,69 @@ const Statistics = () => {
   const recentVisits = getRecentVisits();
 
   return (
-    <Layout>
-      <div className="p-6">
-        <h1 className="text-2xl font-bold mb-6">Health Statistics</h1>
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {statsCards.map((stat, index) => (
-            <Card key={index}>
-              <CardContent className="p-6">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <p className="text-sm text-gray-500">{stat.title}</p>
-                    <p className="text-2xl font-bold">{stat.value}</p>
-                    <p className={`text-sm ${
-                      stat.change.startsWith('+') ? 'text-green-600' : 
-                      stat.change.startsWith('-') ? 'text-red-600' : 'text-gray-600'
-                    }`}>
-                      {stat.change}
-                    </p>
-                  </div>
-                  <stat.icon className="h-8 w-8 text-blue-500" />
+    <div className="p-6">
+      <h1 className="text-2xl font-bold mb-6">Health Statistics</h1>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {statsCards.map((stat, index) => (
+          <Card key={index}>
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between">
+                <div>
+                  <p className="text-sm text-gray-500">{stat.title}</p>
+                  <p className="text-2xl font-bold">{stat.value}</p>
+                  <p className={`text-sm ${
+                    stat.change.startsWith('+') ? 'text-green-600' : 
+                    stat.change.startsWith('-') ? 'text-red-600' : 'text-gray-600'
+                  }`}>
+                    {stat.change}
+                  </p>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-        
-        <Card>
-          <CardHeader>
-            <CardTitle>Recent Doctor Visits</CardTitle>
-          </CardHeader>
-          <CardContent>
-            {recentVisits.length === 0 ? (
-              <div className="text-center py-4 text-gray-500">
-                No appointments found. Book your first appointment to see statistics.
+                <stat.icon className="h-8 w-8 text-blue-500" />
               </div>
-            ) : (
-              <div className="space-y-3">
-                {recentVisits.map((appointment) => (
-                  <div key={appointment.id} className="flex justify-between items-center">
-                    <div>
-                      <span className="font-medium">{appointment.doctor} - {appointment.specialty}</span>
-                      {appointment.notes && (
-                        <p className="text-sm text-gray-600">Note: {appointment.notes}</p>
-                      )}
-                    </div>
-                    <div className="text-right">
-                      <span className="text-gray-500">{formatDate(appointment.date)}</span>
-                      <div className="mt-1">
-                        <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
-                          appointment.status === "Confirmed" 
-                            ? "bg-green-100 text-green-800" 
-                            : "bg-yellow-100 text-yellow-800"
-                        }`}>
-                          {appointment.status}
-                        </span>
-                      </div>
+            </CardContent>
+          </Card>
+        ))}
+      </div>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Recent Doctor Visits</CardTitle>
+        </CardHeader>
+        <CardContent>
+          {recentVisits.length === 0 ? (
+            <div className="text-center py-4 text-gray-500">
+              No appointments found. Book your first appointment to see statistics.
+            </div>
+          ) : (
+            <div className="space-y-3">
+              {recentVisits.map((appointment) => (
+                <div key={appointment.id} className="flex justify-between items-center">
+                  <div>
+                    <span className="font-medium">{appointment.doctor} - {appointment.specialty}</span>
+                    {appointment.notes && (
+                      <p className="text-sm text-gray-600">Note: {appointment.notes}</p>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <span className="text-gray-500">{formatDate(appointment.date)}</span>
+                    <div className="mt-1">
+                      <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
+                        appointment.status === "Confirmed" 
+                          ? "bg-green-100 text-green-800" 
+                          : "bg-yellow-100 text-yellow-800"
+                      }`}>
+                        {appointment.status}
+                      </span>
                     </div>
                   </div>
-                ))}
-              </div>
-            )}
-          </CardContent>
-        </Card>
-      </div>
-    </Layout>
+                </div>
+              ))}
+            </div>
+          )}
+        </CardContent>
+      </Card>
+    </div>
+
   );
 };
 

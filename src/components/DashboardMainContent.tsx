@@ -6,7 +6,7 @@ import ActivityFeed from "./ActivityFeed";
 
 const DashboardMainContent = () => {
   return (
-    <main className="flex-1 p-6 overflow-auto">
+    <div className="flex-1 p-6 overflow-auto">
       <div className="grid grid-cols-1 xl:grid-cols-3 gap-6 h-full">
         {/* Left Column - Anatomy Section */}
         <div className="xl:col-span-1">
@@ -24,7 +24,7 @@ const DashboardMainContent = () => {
           <ActivityFeed />
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

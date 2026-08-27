@@ -1,5 +1,5 @@
 
-import { Calendar, Home, Clock, BarChart3, FileText, HelpCircle, Settings, Heart, Lightbulb, BookOpen } from "lucide-react";
+import { Calendar, Home, Clock, BarChart3, FileText, HelpCircle, Settings, Heart, Lightbulb, BookOpen, MessageCircle } from "lucide-react";
 
 export const navigationItems = [
   {
@@ -41,6 +41,11 @@ export const navigationItems = [
     name: "Diary",
     icon: BookOpen,
     url: "/diary",
+  },
+  {
+    name: "Chat",
+    icon: MessageCircle,
+    url: "/chat",
   },
   {
     name: "Support",
