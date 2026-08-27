@@ -190,7 +190,7 @@ const Header = () => {
               <p className="text-sm font-medium text-gray-900">
                 {isGuest ? "Guest" : userProfile.username}
               </p>
-              <p className="text-xs text-gray-500">{isGuest ? "Guest" : "Patient"}</p>
+              <p className="text-xs text-gray-500">{isGuest ? "Not signed in" : "Patient"}</p>
             </div>
           </div>
           <LogoutButton />
