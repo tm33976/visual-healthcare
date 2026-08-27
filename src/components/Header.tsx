@@ -136,7 +136,7 @@ const Header = ({ onMenuClick }: HeaderProps) => {
 
   // MAIN UI
   return (
-    <header className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-2 py-3 sm:px-4 md:px-6">
+    <header className="shrink-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 px-2 py-3 sm:px-4 md:px-6">
       <div className="flex flex-col gap-y-2 sm:flex-row sm:items-center sm:justify-between">
         <div className="flex flex-col gap-y-2 sm:flex-row sm:items-center sm:space-x-6">
           <div className="flex items-center gap-2">

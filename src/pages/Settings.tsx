@@ -39,12 +39,12 @@ const Settings = () => {
   const [userProfile, setUserProfile] = useState<UserProfile>(() => {
     const saved = localStorage.getItem('userProfile');
     return saved ? JSON.parse(saved) : {
-      firstName: "John",
-      lastName: "Doe", 
-      email: "john.doe@example.com",
-      phone: "+91 98765 43210",
+      firstName: "",
+      lastName: "",
+      email: "",
+      phone: "",
       profileImage: "",
-      username: "John Doe"
+      username: ""
     };
   });
 
@@ -76,6 +76,37 @@ const Settings = () => {
     // Trigger storage event for other components to update
     window.dispatchEvent(new Event('storage'));
   }, [userProfile]);
+
+  useEffect(() => {
+    if (isGuest) return;
+    let cancelled = false;
+
+    (async () => {
+      const { data: { user } } = await supabase.auth.getUser();
+      if (!user || cancelled) return;
+
+      const { data: profile } = await supabase
+        .from("profiles")
+        .select("username")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      const username = (profile?.username as string) || "";
+      const [first = "", ...rest] = username.split(" ");
+
+      setUserProfile((prev) => ({
+        ...prev,
+        email: prev.email || user.email || "",
+        username: prev.username || username,
+        firstName: prev.firstName || first,
+        lastName: prev.lastName || rest.join(" "),
+      }));
+    })();
+
+    return () => {
+      cancelled = true;
+    };
+  }, [isGuest]);
 
   useEffect(() => {
     localStorage.setItem('notificationSettings', JSON.stringify(notifications));
@@ -247,6 +278,7 @@ const Settings = () => {
                 <label className="block text-sm font-medium mb-2">First Name</label>
                 <Input 
                   value={userProfile.firstName}
+                  placeholder="First name"
                   onChange={(e) => handleProfileChange('firstName', e.target.value)}
                   disabled={isGuest}
                 />
@@ -255,6 +287,7 @@ const Settings = () => {
                 <label className="block text-sm font-medium mb-2">Last Name</label>
                 <Input 
                   value={userProfile.lastName}
+                  placeholder="Last name"
                   onChange={(e) => handleProfileChange('lastName', e.target.value)}
                   disabled={isGuest}
                 />
@@ -264,6 +297,7 @@ const Settings = () => {
               <label className="block text-sm font-medium mb-2">Email</label>
               <Input 
                 value={userProfile.email}
+                placeholder="you@example.com"
                 onChange={(e) => handleProfileChange('email', e.target.value)}
                 disabled={isGuest}
               />
@@ -272,6 +306,7 @@ const Settings = () => {
               <label className="block text-sm font-medium mb-2">Phone</label>
               <Input 
                 value={userProfile.phone}
+                placeholder="+91 00000 00000"
                 onChange={(e) => handleProfileChange('phone', e.target.value)}
                 disabled={isGuest}
               />

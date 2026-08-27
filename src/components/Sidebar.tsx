@@ -15,9 +15,9 @@ const Sidebar = ({ open, onClose }: SidebarProps) => {
     <>
       <aside
         className={`fixed top-0 left-0 z-30 h-screen w-64 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-800 transition-transform duration-200 ease-in-out
-          ${open ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 lg:static lg:block animate-slide-in-right`}
+          ${open ? "translate-x-0" : "-translate-x-full"} lg:translate-x-0 lg:static lg:block lg:h-auto lg:shrink-0 overflow-y-auto animate-slide-in-right`}
       >
-        <div className="p-6 flex flex-col min-h-screen">
+        <div className="p-6 flex flex-col min-h-screen lg:min-h-0">
           <h3 className="text-sm font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider mb-4 animate-fade-in">
             General
           </h3>
