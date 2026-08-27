@@ -37,8 +37,7 @@ const Settings = () => {
   
   // Initialize state with data from localStorage or defaults
   const [userProfile, setUserProfile] = useState<UserProfile>(() => {
-    const saved = localStorage.getItem('userProfile');
-    return saved ? JSON.parse(saved) : {
+    const empty: UserProfile = {
       firstName: "",
       lastName: "",
       email: "",
@@ -46,6 +45,26 @@ const Settings = () => {
       profileImage: "",
       username: ""
     };
+
+    const saved = localStorage.getItem('userProfile');
+    if (!saved) return empty;
+
+    // Earlier builds seeded these placeholders into storage, so anyone who
+    // opened Settings before now has a fake identity saved. Treat those exact
+    // values as unset so the real account can fill them in.
+    const LEGACY: Record<string, string> = {
+      firstName: "John",
+      lastName: "Doe",
+      email: "john.doe@example.com",
+      phone: "+91 98765 43210",
+      username: "John Doe"
+    };
+
+    const parsed = { ...empty, ...JSON.parse(saved) } as UserProfile;
+    (Object.keys(LEGACY) as (keyof UserProfile)[]).forEach((key) => {
+      if (parsed[key] === LEGACY[key as string]) parsed[key] = "";
+    });
+    return parsed;
   });
 
   const [notifications, setNotifications] = useState<NotificationSettings>(() => {
