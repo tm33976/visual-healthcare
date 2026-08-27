@@ -71,7 +71,7 @@ export default function ForgotPasswordDialog() {
             </Button>
           </DialogFooter>
         </form>
-        {message && <div className={`${sent ? "text-green-600" : "text-red-500"} text-xs text-center mt-2`}>{message}</div>}
+        {message && <div className={`${sent ? "text-green-600 dark:text-green-400" : "text-red-500"} text-xs text-center mt-2`}>{message}</div>}
       </DialogContent>
     </Dialog>
   );

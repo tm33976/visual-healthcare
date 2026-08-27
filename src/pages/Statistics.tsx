@@ -94,8 +94,8 @@ const Statistics = () => {
                   <p className="text-sm text-gray-500 dark:text-gray-400">{stat.title}</p>
                   <p className="text-2xl font-bold">{stat.value}</p>
                   <p className={`text-sm ${
-                    stat.change.startsWith('+') ? 'text-green-600' : 
-                    stat.change.startsWith('-') ? 'text-red-600' : 'text-gray-600 dark:text-gray-400'
+                    stat.change.startsWith('+') ? 'text-green-600 dark:text-green-400' : 
+                    stat.change.startsWith('-') ? 'text-red-600 dark:text-red-400' : 'text-gray-600 dark:text-gray-400'
                   }`}>
                     {stat.change}
                   </p>
@@ -131,8 +131,8 @@ const Statistics = () => {
                     <div className="mt-1">
                       <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                         appointment.status === "Confirmed" 
-                          ? "bg-green-100 text-green-800" 
-                          : "bg-yellow-100 text-yellow-800"
+                          ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200" 
+                          : "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200"
                       }`}>
                         {appointment.status}
                       </span>

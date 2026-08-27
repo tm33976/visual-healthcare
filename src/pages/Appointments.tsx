@@ -103,8 +103,8 @@ const Appointments = () => {
                     </div>
                     <span className={`inline-block px-2 py-1 rounded-full text-xs font-medium ${
                       appointment.status === "Confirmed" 
-                        ? "bg-green-100 text-green-800" 
-                        : "bg-yellow-100 text-yellow-800"
+                        ? "bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200" 
+                        : "bg-yellow-100 dark:bg-yellow-900 text-yellow-800 dark:text-yellow-200"
                     } animate-fade-in`}>
                       {appointment.status}
                     </span>

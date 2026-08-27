@@ -12,7 +12,7 @@ const Tips = () => {
       icon: Heart,
       category: "Cardiac Emergency",
       color: "text-red-500",
-      bgColor: "bg-red-50",
+      bgColor: "bg-red-50 dark:bg-red-950",
       symptoms: ["Chest pain or discomfort", "Shortness of breath", "Nausea", "Sweating", "Pain in arm, jaw, or back"],
       immediateActions: [
         "Call 911 immediately",
@@ -29,7 +29,7 @@ const Tips = () => {
       icon: Brain,
       category: "Neurological Emergency",
       color: "text-purple-500",
-      bgColor: "bg-purple-50",
+      bgColor: "bg-purple-50 dark:bg-purple-950",
       symptoms: ["Sudden face drooping", "Arm weakness", "Speech difficulty", "Sudden confusion", "Severe headache"],
       immediateActions: [
         "Call 911 immediately",
@@ -46,7 +46,7 @@ const Tips = () => {
       icon: Zap,
       category: "Airway Emergency",
       color: "text-orange-500",
-      bgColor: "bg-orange-50",
+      bgColor: "bg-orange-50 dark:bg-orange-950",
       symptoms: ["Cannot speak or breathe", "Clutching throat", "Blue lips or face", "Weak cough"],
       immediateActions: [
         "Ask 'Are you choking?' If they can't speak, act immediately",
@@ -62,8 +62,8 @@ const Tips = () => {
       title: "Severe Bleeding",
       icon: Droplet,
       category: "Trauma Emergency",
-      color: "text-red-600",
-      bgColor: "bg-red-50",
+      color: "text-red-600 dark:text-red-400",
+      bgColor: "bg-red-50 dark:bg-red-950",
       symptoms: ["Blood spurting or flowing freely", "Blood soaking through bandages", "Signs of shock"],
       immediateActions: [
         "Call 911 if bleeding is severe",
@@ -79,8 +79,8 @@ const Tips = () => {
       title: "Severe Burns",
       icon: Thermometer,
       category: "Burn Emergency",
-      color: "text-yellow-600",
-      bgColor: "bg-yellow-50",
+      color: "text-yellow-600 dark:text-yellow-400",
+      bgColor: "bg-yellow-50 dark:bg-yellow-950",
       symptoms: ["Blistering", "White or charred skin", "Burns larger than palm", "Chemical or electrical burns"],
       immediateActions: [
         "Call 911 for severe burns",
@@ -96,8 +96,8 @@ const Tips = () => {
       title: "Severe Allergic Reaction",
       icon: Shield,
       category: "Allergic Emergency",
-      color: "text-green-600",
-      bgColor: "bg-green-50",
+      color: "text-green-600 dark:text-green-400",
+      bgColor: "bg-green-50 dark:bg-green-950",
       symptoms: ["Difficulty breathing", "Swelling of face/throat", "Rapid pulse", "Dizziness", "Widespread rash"],
       immediateActions: [
         "Call 911 immediately",
@@ -151,9 +151,9 @@ const Tips = () => {
       </div>
 
       {/* Emergency Numbers */}
-      <Card className="mb-6 border-red-200 bg-red-50">
+      <Card className="mb-6 border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950">
         <CardHeader>
-          <CardTitle className="flex items-center text-red-700">
+          <CardTitle className="flex items-center text-red-700 dark:text-red-300">
             <Phone className="h-5 w-5 mr-2" />
             Emergency Numbers (India)
           </CardTitle>
@@ -162,7 +162,7 @@ const Tips = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {emergencyNumbers.map((contact, index) => (
               <div key={index} className="text-center">
-                <div className="font-bold text-lg text-red-700">{contact.number}</div>
+                <div className="font-bold text-lg text-red-700 dark:text-red-300">{contact.number}</div>
                 <div className="font-medium">{contact.service}</div>
                 <div className="text-sm text-gray-600 dark:text-gray-400">{contact.description}</div>
               </div>
@@ -236,7 +236,7 @@ const Tips = () => {
                 
                 <AccordionItem value="dont-do">
                   <AccordionTrigger className="text-left">
-                    <span className="flex items-center text-red-600">
+                    <span className="flex items-center text-red-600 dark:text-red-400">
                       <AlertTriangle className="h-4 w-4 mr-2" />
                       What NOT to Do
                     </span>
@@ -244,7 +244,7 @@ const Tips = () => {
                   <AccordionContent>
                     <ul className="list-disc pl-5 space-y-1">
                       {tip.dontDo.map((item, index) => (
-                        <li key={index} className="text-sm text-red-600">{item}</li>
+                        <li key={index} className="text-sm text-red-600 dark:text-red-400">{item}</li>
                       ))}
                     </ul>
                   </AccordionContent>
@@ -256,11 +256,11 @@ const Tips = () => {
       </div>
 
       {/* Disclaimer */}
-      <Card className="mt-6 border-yellow-200 bg-yellow-50">
+      <Card className="mt-6 border-yellow-200 dark:border-yellow-900 bg-yellow-50 dark:bg-yellow-950">
         <CardContent className="p-4">
           <div className="flex items-start">
-            <AlertTriangle className="h-5 w-5 text-yellow-600 mr-2 mt-0.5 flex-shrink-0" />
-            <div className="text-sm text-yellow-800">
+            <AlertTriangle className="h-5 w-5 text-yellow-600 dark:text-yellow-400 mr-2 mt-0.5 flex-shrink-0" />
+            <div className="text-sm text-yellow-800 dark:text-yellow-200">
               <strong>Disclaimer:</strong> This information is for educational purposes only and should not replace professional medical advice. 
               Always call 102 (Ambulance) or 112 (National Emergency) or your local emergency number for serious medical emergencies. Consider taking a certified first aid course for proper training.
             </div>
