@@ -13,6 +13,7 @@ import Tips from "./pages/Tips";
 import Support from "./pages/Support";
 import Settings from "./pages/Settings";
 import Chat from "./pages/Chat";
+import FindCare from "./pages/FindCare";
 import NotFound from "./pages/NotFound";
 import Auth from "./pages/Auth";
 import AuthGuard from "@/components/AuthGuard";
@@ -43,6 +44,7 @@ const App = () => (
                   <Route path="/tips" element={<Tips />} />
                   <Route path="/diary" element={<HealthDiary />} />
                   <Route path="/chat" element={<Chat />} />
+                  <Route path="/find-care" element={<FindCare />} />
                   <Route path="/support" element={<Support />} />
                   <Route path="/settings" element={<Settings />} />
                 </Route>
