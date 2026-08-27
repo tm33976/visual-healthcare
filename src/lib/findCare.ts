@@ -29,15 +29,6 @@ export interface PinLocation {
   label: string;
 }
 
-// The main instance rate-limits by IP and its error pages carry no CORS
-// headers, so a throttled request surfaces in the browser as a CORS failure.
-// Fall through to the mirrors before giving up.
-const OVERPASS_ENDPOINTS = [
-  "https://overpass-api.de/api/interpreter",
-  "https://overpass.kumi.systems/api/interpreter",
-  "https://overpass.private.coffee/api/interpreter",
-];
-
 const CACHE_PREFIX = "findcare:";
 const CACHE_TTL_MS = 24 * 60 * 60 * 1000;
 const SEARCH_RADIUS_M = 6000;
@@ -81,21 +72,11 @@ export async function lookupPin(pin: string): Promise<PinLocation> {
   const cached = readCache<PinLocation>(`pin:${pin}`);
   if (cached) return cached;
 
-  const url =
-    "https://nominatim.openstreetmap.org/search?format=json&limit=1&country=India&postalcode=" +
-    encodeURIComponent(pin);
-  const res = await fetch(url, { headers: { "Accept-Language": "en" } });
-  if (!res.ok) throw new Error("Could not look up that PIN code right now.");
+  const res = await fetch(`/api/geocode?pin=${encodeURIComponent(pin)}`);
+  const body = await res.json();
+  if (!res.ok) throw new Error(body?.error || "Could not look up that PIN code right now.");
 
-  const data = (await res.json()) as Array<{ lat: string; lon: string; display_name: string }>;
-  if (!data.length) throw new Error(`No location found for PIN ${pin}.`);
-
-  const location: PinLocation = {
-    pin,
-    lat: Number(data[0].lat),
-    lon: Number(data[0].lon),
-    label: data[0].display_name,
-  };
+  const location = body as PinLocation;
   writeCache(`pin:${pin}`, location);
   return location;
 }
@@ -119,24 +100,15 @@ export async function fetchFacilities(location: PinLocation): Promise<Facility[]
   const query =
     `[out:json][timeout:25];(node${filter}${around};way${filter}${around};);out center tags 600;`;
 
-  let raw: unknown = null;
-  let lastError: unknown = null;
-
-  for (const endpoint of OVERPASS_ENDPOINTS) {
-    try {
-      const res = await fetch(endpoint, { method: "POST", body: query });
-      if (!res.ok) throw new Error(`${endpoint} returned ${res.status}`);
-      raw = await res.json();
-      break;
-    } catch (e) {
-      lastError = e;
-    }
-  }
-
-  if (!raw) {
-    console.warn("Overpass lookup failed", lastError);
+  const res = await fetch("/api/overpass", {
+    method: "POST",
+    headers: { "Content-Type": "text/plain" },
+    body: query,
+  });
+  const raw = await res.json();
+  if (!res.ok) {
     throw new Error(
-      "The map service is busy right now. Wait a few seconds and search again."
+      raw?.error || "The map service is busy right now. Wait a few seconds and search again."
     );
   }
 
